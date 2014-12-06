@@ -69,4 +69,13 @@ public class User {
         sb.append('}');
         return sb.toString();
     }
+//       @Override
+//    public String toString() {
+//        final StringBuilder sb = new StringBuilder("User{");
+//        sb.append("email='").append(email).append('\'');
+//        sb.append(", name='").append(name).append('\'');
+//        sb.append(", phoneNumbers=").append(phoneNumbers);
+//        sb.append('}');
+//        return sb.toString();
+//    }
 }

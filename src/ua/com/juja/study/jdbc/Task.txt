@@ -19,5 +19,27 @@ pgAdmin3
 	* сервери - параметри conect (по суті логін, пароль, url)
 	-  створимо нову спеціфікацію
 
+    00:16:39 - executeUpdate() - add information
+        * check in SQL Editor
+            select * from participations
+
+    - PreparedStatement - додавати параматри в Query
+         * Sql script input
+         preparedStatement.setString(1, email) - на перший параметр вхідного Query підставляю email
+         ? - параметр
+
+    00:37:00 - запустити stored procedure за допомогою JDBC
 
     00:49:04 - CREATE TABLE phones
+
+    00:56:25 - User extractUser(String email) - повертає екземпляр User
+
+        - 01:02:01 - SQL Editor
+            * якщо з великої літери брати у лапки і екранувати "\"Phones\"
+        * створили мапінг
+
+    Class.forName("org.postgresql.Driver"); - механізм клас loading є в Java, який завантажує клас у файл (3 version)
+        * щоб це робити динамічно, вказується ім'я класу, який треба завантажити
+        * у режимі Runtime доступний
+        ! у 4 версії автоматично знаходиться
+        ! for SqlCmd must do it

@@ -4,19 +4,16 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: viktor
- * Date: 12/1/14
- * Time: 12:38 PM
- */
+
 public class JdbcDemo {
     private static Connection connection;
-    public static User extractUser(String email) throws SQLException{
+
+    public static User extractUser(String email) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("select p.email, p.name, ph.phone from participations p join " +
                 "\"Phones\" ph on p.email=ph.email where p.email=?");
         preparedStatement.setString(1, email);
         ResultSet userRs = preparedStatement.executeQuery();
+
         User user = new User();
         List<String> phones = new LinkedList<>();
         while (userRs.next()) {
@@ -25,7 +22,9 @@ public class JdbcDemo {
             phones.add(userRs.getString("phone"));
         }
         user.setPhoneNumbers(phones);
+
         userRs.close();
+
         return user;
     }
 
@@ -36,17 +35,19 @@ public class JdbcDemo {
             connection = establishConnection();
             JdbcDemo.connection = connection;
             System.out.println(extractUser("kuchin.victor@gmail.com"));
-            Statement statement = connection.createStatement();
-            connection.setAutoCommit(false);
-            statement.executeUpdate("insert into participations values ('kuchin1.victor@gmail.com', 'Viktor')");
-            connection.rollback();
-            ResultSet participations = statement.executeQuery("select * from participations");
-            while (participations.next()) {
-                System.out.print(participations.getString(1) + " | ");
-                System.out.println(participations.getString("name"));
-            }
-//            statement.close();
-            participations.close();
+
+//            Statement statement = connection.createStatement();
+//            connection.setAutoCommit(false);
+//            statement.executeUpdate("insert into participations values ('kuchin1.victor@gmail.com', 'Viktor')");
+
+//            connection.rollback();
+//            ResultSet participations = statement.executeQuery("select * from participations");
+//            while (participations.next()) {
+//                System.out.print(participations.getString(1) + " | ");
+//                System.out.println(participations.getString("name"));
+//            }
+////            statement.close();
+//            participations.close();
 
 //            String email = "kuchin1.victor@gmail.com";
 //            PreparedStatement preparedStatement = connection.prepareStatement("select * from participations where " +
